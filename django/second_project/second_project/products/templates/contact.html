@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    
-</head>
-<body>
-        <h1>Testing</h1>
+{% extends 'base.html' %}
+{% block content %}
         <h1>Contact</h1>
         <p>This is contact page</p>
-        {% block content %}
 
-        {% endblock %}
-</body>
-</html>
+        <p>
+                {{ my_text }}, {{ my_number}} <!-- to access dictionary-->
+                {{ my_list }}
+        </p>
+
+        <ul>
+        <!--for iterate the element from a list-->
+        {% for  my_list_item in my_list %}
+        <li>{{ my_list_item }}</li>
+        {% endfor %}        
+        </ul>
+        
+{% endblock %}
