@@ -2,7 +2,7 @@
 # inheritance the base and derived class having functions with same name 
 # when we call functions using derived class object
 # is showing child class function result only 
-# to get the result from parent class we use super() funtion
+# to get the result from parent class we use super() function
 
 class parent:
     def display(self):

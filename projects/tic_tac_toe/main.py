@@ -9,10 +9,8 @@ frame_size_x = 500
 frame_size_y = 500
 square_size = 100
 
-common_space_x = 300
-common_space_y = 50
-
 player_turns = 0
+symbol = 0
 b = []
 g_array = []
 r_array = []
@@ -43,10 +41,12 @@ def grids():
             b.append(y)
             pygame.draw.rect(game_window, pink, (x, y, square_size, square_size), 1)
 
+
 # to draw x symbol
 def draw_X(x, y, size, color):
     pygame.draw.line(game_window, color, (x - size / 2, y - size / 2), (x + size / 2, y + size / 2), 5)
     pygame.draw.line(game_window, color, (x - size / 2, y + size / 2), (x + size / 2, y - size / 2), 5)
+
 
 # to show player turns
 def show_display(choice, color, font, size, player_turns):
@@ -58,13 +58,16 @@ def show_display(choice, color, font, size, player_turns):
     game_window.fill(black, (150, 50, 150, 50))  # add this line to clear the previous text
     game_window.blit(score_surface, (150, 50))
 
-# show final win
+
+# show final winner
 def show_win_card(choice, color, font, size):
     score_font = pygame.font.SysFont(font, size)
-    if choice ==1:
+    if choice == 1:
         win_surface = score_font.render("Green Win", True, color)
-    else:
+    elif choice == 2:
         win_surface = score_font.render("Red Win", True, color)
+    else:
+        win_surface = score_font.render("Game Draw", True, white)
     game_window.fill(black, (150, 50, 150, 50))
     game_window.blit(win_surface, (150, 50))
 
@@ -129,6 +132,10 @@ while True:
                 print("mouse pressed", event.pos)
                 x_index = int((event.pos[0] - 100) / square_size)
                 y_index = int((event.pos[1] - 100) / square_size)
+
+                # to avoid the click outside the grids
+                if event.pos[0] > 400 or event.pos[1] > 400:
+                    break
                 x = x_index * square_size + 100 + square_size / 2
                 y = y_index * square_size + 100 + square_size / 2
                 if (x, y) in r_array or (x, y) in g_array:
@@ -138,16 +145,26 @@ while True:
                         if (x, y) not in r_array and not win_flag:
                             pygame.draw.circle(game_window, red, (x, y), 30, 5)
                             r_array.append((x, y))
+                            symbol += 1
                     else:
                         if (x, y) not in g_array and not win_flag:
                             draw_X(x, y, 50, green)
                             g_array.append((x, y))
+                            symbol += 1
 
                 player_turns += 1
 
     g_flag = validation(g_array)
     r_flag = validation(r_array)
 
+    # to check the draw condition
+    if symbol == 9:
+        show_win_card(3, white, 'courier', 20)
+        keys = pygame.key.get_pressed()
+        if any(keys):
+            pygame.quit()
+            sys.quit()
+    # to print green as a winner
     if g_flag:
         show_win_card(1, green, 'courier', 20)
         win_flag = True
@@ -155,6 +172,7 @@ while True:
         if any(keys):
             pygame.quit()
             sys.exit()
+    # to print red as a winner
     elif r_flag:
         show_win_card(2, red, 'courier', 20)
         win_flag = True

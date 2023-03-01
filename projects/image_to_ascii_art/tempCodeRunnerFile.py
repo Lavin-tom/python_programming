@@ -1,0 +1,1 @@
+https://python-pillow.org/images/pillow-logo.png
