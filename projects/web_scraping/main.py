@@ -29,6 +29,7 @@ while(True):
     # display the current players on crease
     table = soup.find(class_ = 'table-responsive')
     rows = table.find_all('tr')
+
     # Loop through each row and print its data
     for row in rows:
         # Find all <td> tags within the row

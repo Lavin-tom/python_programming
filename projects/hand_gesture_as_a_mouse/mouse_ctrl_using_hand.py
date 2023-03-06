@@ -29,12 +29,12 @@ while True:
                 if id == 8:
                     mouse_x = int(screen_width / image_width * x)
                     mouse_y = int(screen_height / image_height * y)
-                    cv2.circle(image, (x, y), 10, (0, 255, 255))
+                    cv2.circle(image, (x, y), 10, (0, 255, 0))
                     pyautogui.moveTo(mouse_x, mouse_y)
                     x1 = x
                     y1 = y
                 if id == 12:
-                    cv2.circle(image, (x, y), 10, (0, 255, 255))
+                    cv2.circle(image, (x, y), 10, (0, 255, 0))
                     #pyautogui.moveTo(mouse_x, mouse_y)
                     x2 = x
                     y2 = y
@@ -45,7 +45,7 @@ while True:
                     #y2 = y
         dist = y1 - y2
         #print(x2,y2)
-        if dist < 3:
+        if dist < 5:
             is_clicked = True
         print(dist)
 

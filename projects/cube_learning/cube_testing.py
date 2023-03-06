@@ -1,3 +1,5 @@
+# not yet completed
+
 from random import randint
 import tkinter as tk
 
