@@ -3,6 +3,7 @@ import os
 import sys
 
 from solutionOfSudoku.sudoku_solution import solve_sudoku
+#from solutionOfSudoku.sudoku_solution1 import sudoku 
 
 #initialize the pygame
 pygame.init()
