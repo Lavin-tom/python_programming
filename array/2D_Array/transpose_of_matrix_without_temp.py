@@ -1,4 +1,5 @@
 # transpose of matrix without temp matrix
+# not completed 
 
 def set_array(arr,r,c):
     print("enter array elements: ")
