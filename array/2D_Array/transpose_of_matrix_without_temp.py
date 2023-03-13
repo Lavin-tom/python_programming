@@ -4,9 +4,9 @@
 def set_array(arr,r,c):
     print("enter array elements: ")
     for i in range(0,r):
-        for j in range(0, c):
-            n = input("")
-            arr[i][j]=n
+        for j in range(0,c):
+            #n = input("enter array elements")
+            arr[i][j] = input("")
 
 
 def get_array(arr,r,c):
@@ -27,5 +27,5 @@ r = int(r)
 c = int(c)
 set_array(arr,r,c)
 get_array(arr,r,c)
-transposeArray(arr,r,c)
+#transposeArray(arr,r,c)
 get_array(arr,r,c)
