@@ -1,5 +1,4 @@
 #binary clock implementation using pygame
-
 import pygame
 import sys
 import time
@@ -12,10 +11,6 @@ frame_size_y = 280
 black = pygame.Color(40,42,54)
 white = pygame.Color(248,248,242)
 red = pygame.Color(255,85,85)
-pink = pygame.Color(255, 121, 198)
-
-font = 'courier' 
-size = 20
 
 #initialize the window
 pygame.init()
@@ -24,7 +19,9 @@ pygame.font.init()
 clock_window = pygame.display.set_mode([frame_size_x,frame_size_y])
 font = pygame.font.SysFont('Arial', 30)
 fps_controller = pygame.time.Clock()
+Running = True
 
+#to display the off circle/ dim circle
 def dimCircle():
     #second right side
     for i in range(20,150,40):
@@ -50,105 +47,107 @@ def dimCircle():
     for i in range(100,150,40):
         pygame.draw.circle(clock_window,white,(40,i),8)
 
+# to display the on circle
+def binaryCircle(x,y):
+    pygame.draw.circle(clock_window, red,(x,y), 8)
+
+#to display time in text format
+def displayTime(r,x,y,blix_x,blix_y):
+    text = font.render(f'{r}', True, white)
+    clock_window.fill(black, (x,y, 30,30))
+    clock_window.blit(text, (blix_x,blix_y))
+
+# main function to control the flow of binary clock
 def circleVisible(seconds,minutes,hours):
     clock_window.fill(black)
-    dimCircle()
-    r = seconds % 10
-    text = font.render(f'{r}', True, white)
-    clock_window.fill(black, (400,160, 50,50))
-    clock_window.blit(text, (395, 160))
     
+    dimCircle()
+
+    r = seconds % 10
+    displayTime(r,400,160,395,160)
     for i in range (4): 
         n = (r>>i)&1    
         if i == 3 and n == 1:
-            pygame.draw.circle(clock_window, red,(400,20), 8)
+            binaryCircle(400,20)
         elif i == 2 and n == 1:
-            pygame.draw.circle(clock_window, red,(400,60), 8)
+            binaryCircle(400,60)
         elif i == 1 and n == 1:
-            pygame.draw.circle(clock_window, red,(400,100), 8)
+            binaryCircle(400,100)
         elif i == 0 and n == 1:
-            pygame.draw.circle(clock_window, red,(400,140), 8)
+            binaryCircle(400,140)
 
     r = seconds // 10
-    text = font.render(f'{r}', True,white)
-    clock_window.fill(black, (360,160, 30,30))
-    clock_window.blit(text, (355, 160))
+    displayTime(r,360,160,355,160)
     for i in range (3): 
 
         n = (r>>i)&1
         if i == 2 and n == 1:
-            pygame.draw.circle(clock_window, red,(360,60), 8)
+            binaryCircle(360,60)
         if i == 1 and n == 1:
-            pygame.draw.circle(clock_window, red,(360,100), 8)
+            binaryCircle(360,100)
         if i == 0 and n == 1:
-            pygame.draw.circle(clock_window, red,(360,140), 8)
+            binaryCircle(360,140)
         
     r = minutes % 10
-    text = font.render(f'{r}', True,white)
-    clock_window.fill(black, (280,160, 30,30))
-    clock_window.blit(text, (275, 160))
+    displayTime(r,280,160,275,160)
     for i in range (4): 
         n = (r>>i)&1
         if i == 3 and n == 1:
-            pygame.draw.circle(clock_window, red,(280,20), 8)
+            binaryCircle(280,20)
         if i == 2 and n == 1:
-            pygame.draw.circle(clock_window, red,(280,60), 8)
+            binaryCircle(280,60)
         if i == 1 and n == 1:
-            pygame.draw.circle(clock_window, red,(280,100), 8)
+            binaryCircle(280,100)
         if i == 0 and n == 1:
-            pygame.draw.circle(clock_window, red,(280,140), 8)
+            binaryCircle(280,140)
 
     r = minutes // 10
-    text = font.render(f'{r}', True,white)
-    clock_window.fill(black, (200,160, 30,30))
-    clock_window.blit(text, (195, 160))
+    displayTime(r,200,160,195,160)
     for i in range (3): 
         n = (r>>i)&1
         if i == 2 and n == 1:
-            pygame.draw.circle(clock_window, red,(200,60), 8)
+            binaryCircle(200,60)
         if i == 1 and n == 1:
-            pygame.draw.circle(clock_window, red,(200,100), 8)
+            binaryCircle(200,100)
         if i == 0 and n == 1:
-            pygame.draw.circle(clock_window, red,(200,140), 8)
+            binaryCircle(200,140)
 
     r = hours % 10
-    text = font.render(f'{r}', True, white)
-    clock_window.fill(black, (120,160, 30,30))
-    clock_window.blit(text, (115, 160))
+    displayTime(r,120,160,115,160)
     for i in range (4): 
         n = (r>>i)&1
         if i == 3 and n == 1:
-            pygame.draw.circle(clock_window, red,(120,20), 8)
+            binaryCircle(120,20)
         if i == 2 and n == 1:
-            pygame.draw.circle(clock_window, red,(120,60), 8)
+            binaryCircle(120,60)
         if i == 1 and n == 1:
-            pygame.draw.circle(clock_window, red,(120,100), 8)
+            binaryCircle(120,100)
         if i == 0 and n == 1:
-            pygame.draw.circle(clock_window, red,(120,140), 8)
+            binaryCircle(120,140)
 
     r = hours // 10
-    text = font.render(f'{r}', True,white)
-    clock_window.fill(black, (40,160, 30,30))
-    clock_window.blit(text, (35, 160))
+    displayTime(r,40,160,35,160)
     for i in range (2): 
         n = (r>>i)&1
         if i == 1 and n == 1:
-            pygame.draw.circle(clock_window, red,(40,100), 8)
+            binaryCircle(40,100)
         if i == 0 and n == 1:
-            pygame.draw.circle(clock_window, red,(40,140), 8)
+            binaryCircle(40,140)
     
-Running = True
 while Running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            Running = False
             pygame.quit()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
+                Running = False
                 pygame.quit()
                 sys.exit()
- 
+    #fetch current time 
     current_time = datetime.datetime.now().strftime("%H:%M:%S")
+    #extracting hour minutes and second from the time convert to int
     hours = int(current_time.split(":")[0])
     minutes = int(current_time.split(":")[1])
     seconds = int(current_time.split(":")[2])
