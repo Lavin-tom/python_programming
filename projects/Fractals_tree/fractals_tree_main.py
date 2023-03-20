@@ -15,8 +15,9 @@ cyan = pygame.Color(139, 233, 253)
 color=[white,red,green,pink,cyan]
 Running = True
 i = 0
-pygame.init()
+
 #initialize the window
+pygame.init()
 frame_size_x = 800
 frame_size_y = 600
 pygame.display.set_caption("Fractals Tree")
@@ -31,6 +32,7 @@ def fractal_tree(i,main_window, x, y, length, angle, depth):
     pygame.draw.line(main_window, color[i], (x, y), (x2, y2))
     pygame.display.update()
     time.sleep(0.025)
+
     i += 1
     if i == 5:
         i = 0
