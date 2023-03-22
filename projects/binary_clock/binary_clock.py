@@ -23,30 +23,18 @@ Running = True
 
 #to display the off circle/ dim circle
 def dimCircle():
-    #second right side
-    for i in range(20,150,40):
-        pygame.draw.circle(clock_window,white,(400,i),8)
+    # define the coordinates for each column of circles
+    coords = [(400, i) for i in range(20, 150, 40)] + \
+             [(360, i) for i in range(60, 150, 40)] + \
+             [(280, i) for i in range(20, 150, 40)] + \
+             [(200, i) for i in range(60, 150, 40)] + \
+             [(120, i) for i in range(20, 150, 40)] + \
+             [(40, i) for i in range(100, 150, 40)]
 
-    #second left side
-    for i in range(60,150,40):
-        pygame.draw.circle(clock_window,white,(360,i),8)
-
-    #minutes right side
-    for i in range(20,150,40):
-        pygame.draw.circle(clock_window,white,(280,i),8)
-
-    #minutes left side
-    for i in range(60,150,40):
-        pygame.draw.circle(clock_window,white,(200,i),8)
-
-    #hours right side
-    for i in range(20,150,40):
-        pygame.draw.circle(clock_window,white,(120,i),8)
-
-    #hours left side
-    for i in range(100,150,40):
-        pygame.draw.circle(clock_window,white,(40,i),8)
-
+    # draw all the circles using a nested loop
+    for x, y in coords:
+        pygame.draw.circle(clock_window, white, (x, y), 8)
+        
 # to display the on circle
 def binaryCircle(x,y):
     pygame.draw.circle(clock_window, red,(x,y), 8)
