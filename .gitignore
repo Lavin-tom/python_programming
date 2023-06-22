@@ -1,3 +1,7 @@
 projects/sample.jpg
 *.jpg
 *.txt
+*.pyc
+projects/connecting_dots_game/connecting_dots_game.py
+projects/sudoku/sudoku_pygame/tempCodeRunnerFile.py
+projects/sudoku/sudoku_pygame/solutionOfSudoku/__pycache__/sudoku_solution.cpython-310.pyc

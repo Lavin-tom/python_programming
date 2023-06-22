@@ -1,5 +1,4 @@
 import pygame
-import os
 import sys
 
 from solutionOfSudoku.sudoku_solution import solve_sudoku

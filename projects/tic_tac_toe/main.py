@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+
 # tic-tac-toe implementation
 # pygame
 
